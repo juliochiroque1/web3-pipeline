@@ -4,8 +4,7 @@ import os ##
 import psycopg2 
 import time 
 
-# Tu punto de acceso a la blockchain. Reemplaza esto con tu URL HTTP de Alchemy.
-## dirección exacta del servidor 
+
 
 
 ALCHEMY_URL = os.getenv("ALCHEMY_API")
@@ -17,10 +16,10 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT")
 def enviar_alerta(mensaje):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
     payload = {
-        "chat_id": TELEGRAM_CHAT_ID, # A quién se lo envía
-        "text": mensaje              # Qué texto dirá
+        "chat_id": TELEGRAM_CHAT_ID, 
+        "text": mensaje              
     }
-    requests.post(url, json=payload) # El cartero lleva el paquete
+    requests.post(url, json=payload) 
 
 
 
@@ -28,9 +27,9 @@ def enviar_alerta(mensaje):
 def obtener_ultimo_bloque(): 
 
     payload = {
-    "jsonrpc": "2.0", ##en que idioma le hablaremos 
-    "id": 1, ##el numero de mi pregunta, si envio 100 ya se que numero es cada pregunta 
-    "method": "eth_blockNumber", #el metodo para obtener solo el numero de la ultima hoja del ETH 
+    "jsonrpc": "2.0",  
+    "id": 1, 
+    "method": "eth_blockNumber", 
     "params": []}
 
     response = requests.post(ALCHEMY_URL, json=payload) 
